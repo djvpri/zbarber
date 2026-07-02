@@ -47,7 +47,7 @@ const plans = [
     name: 'Basic',
     price: '100K',
     period: '/bulan',
-    desc: 'Untuk gym kecil',
+    desc: 'Untuk barbershop kecil',
     features: ['200 Member', '10 Kapster', '20 Layanan', 'Laporan lanjutan', 'Support email'],
     highlight: false,
     cta: 'Pilih Basic',
@@ -65,7 +65,7 @@ const plans = [
     name: 'Enterprise',
     price: '1JT',
     period: '/bulan',
-    desc: 'Untuk gym besar',
+    desc: 'Untuk barbershop besar',
     features: ['Unlimited Member', 'Unlimited Kapster', 'Unlimited Layanan', 'White-label', 'API akses', 'Dedicated support'],
     highlight: false,
     cta: 'Hubungi Kami',
@@ -121,7 +121,7 @@ export default function LandingPage() {
             </h1>
             <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-xl">
               Kelola member, jadwal, pembayaran, dan laporan — semua dalam satu aplikasi. 
-              Mulai gratis, bayar sesuai pertumbuhan gym kamu.
+              Mulai gratis, bayar sesuai pertumbuhan barbershop kamu.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -180,7 +180,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Fitur Lengkap untuk Barbershop Kamu</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Semua yang kamu butuhkan untuk mengelola gym — dari pendaftaran member hingga laporan keuangan.
+              Semua yang kamu butuhkan untuk mengelola barbershop — dari pendaftaran member hingga laporan keuangan.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -201,7 +201,7 @@ export default function LandingPage() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Harga Sesuai Pertumbuhan</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              Mulai gratis, upgrade saat gym kamu berkembang. Tanpa kontrak jangka panjang.
+              Mulai gratis, upgrade saat barbershop kamu berkembang. Tanpa kontrak jangka panjang.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -306,7 +306,7 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Siap Kelola Barbershop Lebih Baik?</h2>
           <p className="text-blue-100 mb-8 text-lg">
-            Mulai gratis sekarang. Upgrade kapan saja sesuai pertumbuhan gym kamu.
+            Mulai gratis sekarang. Upgrade kapan saja sesuai pertumbuhan barbershop kamu.
           </p>
           <Link
             href="/register"
@@ -327,7 +327,7 @@ export default function LandingPage() {
                 <span className="text-lg font-bold text-white">ZBarber</span>
               </div>
               <p className="text-sm leading-relaxed">
-                Sistem manajemen gym modern. Kelola member, jadwal, dan keuangan dalam satu aplikasi.
+                Sistem manajemen barbershop modern. Kelola member, jadwal, dan keuangan dalam satu aplikasi.
               </p>
             </div>
             <div>

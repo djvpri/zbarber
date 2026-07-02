@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'ZBarber — Barbershop Management System',
-  description: 'Sistem manajemen gym lengkap',
+  description: 'Sistem manajemen barbershop lengkap',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

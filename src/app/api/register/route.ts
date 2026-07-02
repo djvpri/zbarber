@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email sudah terdaftar' }, { status: 400 })
     }
 
-    // Create slug from gym name
+    // Create slug from barbershop name
     const slug = gymName
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     // Check slug uniqueness
     const existingTenant = await prisma.tenant.findUnique({ where: { slug } })
     if (existingTenant) {
-      return NextResponse.json({ error: 'Nama gym sudah digunakan' }, { status: 400 })
+      return NextResponse.json({ error: 'Nama barbershop sudah digunakan' }, { status: 400 })
     }
 
     // Create tenant + user in transaction
