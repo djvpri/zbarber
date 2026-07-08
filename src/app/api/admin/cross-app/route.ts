@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
       if (!data?.name || !data?.email || !data?.password) {
         return NextResponse.json({ error: 'name, email, password wajib' }, { status: 400 })
       }
-      const existing = await prisma.user.findUnique({ where: { email: data.email } })
+      const existing = await prisma.user.findFirst({ where: { email: data.email } })
       if (existing) return NextResponse.json({ error: 'Email sudah terdaftar' }, { status: 409 })
 
       let tenantId = data.tenantId
