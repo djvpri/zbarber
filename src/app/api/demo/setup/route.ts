@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
           name: 'Demo Barbershop',
           email: 'demo@zomet.my.id',
           password: passwordHash,
-          role: 'owner',
+          role: 'OWNER',
           tenantId: tenant.id,
           isActive: true,
         },
