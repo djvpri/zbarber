@@ -16,8 +16,9 @@ model Tenant {
   phone       String?
   address     String?
   isActive    Boolean  @default(true)
-  isDemo      Boolean  @default(false)
-  plan        String   @default("trial")
+  isDemo        Boolean   @default(false)
+  demoExpiresAt DateTime?
+  plan          String    @default("trial")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
