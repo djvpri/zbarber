@@ -29,6 +29,8 @@ model Tenant {
   appointments Appointment[]
   payments     Payment[]
   settings     Setting[]
+  members      Member[]
+  memberships  Membership[]
 }
 
 // ─── USER (login) ──────────────────────────────────────
@@ -137,18 +139,56 @@ model AppointmentItem {
   service     Service     @relation(fields: [serviceId], references: [id])
 }
 
+// ─── MEMBER ────────────────────────────────────────────
+model Member {
+  id        String   @id @default(cuid())
+  tenantId  String
+  name      String
+  phone     String?
+  email     String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tenant   Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  payments Payment[]
+}
+
+// ─── MEMBERSHIP ────────────────────────────────────────
+model Membership {
+  id           String   @id @default(cuid())
+  tenantId     String
+  name         String
+  price        Int
+  durationDays Int      @default(30)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  tenant   Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  payments Payment[]
+}
+
 // ─── PAYMENT ───────────────────────────────────────────
 model Payment {
   id            String        @id @default(cuid())
   tenantId      String
-  appointmentId String        @unique
+  appointmentId String?       @unique
+  memberId      String?
+  membershipId  String?
+  type          String        @default("appointment")
+  description   String?
   amount        Int
   method        PaymentMethod @default(CASH)
+  status        String        @default("paid")
+  notes         String?
   paidAt        DateTime      @default(now())
   createdAt     DateTime      @default(now())
 
   tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
-  appointment Appointment @relation(fields: [appointmentId], references: [id])
+  appointment Appointment? @relation(fields: [appointmentId], references: [id])
+  member      Member?      @relation(fields: [memberId], references: [id])
+  membership  Membership?  @relation(fields: [membershipId], references: [id])
 }
 
 // ─── SETTING ───────────────────────────────────────────

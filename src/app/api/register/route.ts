@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
             name: ownerName,
             email,
             password: hashedPassword,
-            role: 'owner',
+            role: 'OWNER',
           },
         },
       },
