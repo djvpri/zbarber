@@ -7,11 +7,10 @@ import { signOut, useSession } from 'next-auth/react'
 
 const menuItems = [
   { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-  { href: '/members', label: 'Anggota', icon: '👥' },
-  { href: '/classes', label: 'Layanan', icon: '✂️' },
-  { href: '/schedule', label: 'Jadwal', icon: '📅' },
-  { href: '/attendance', label: 'Absensi', icon: '✅' },
-  { href: '/pt', label: 'Janji Temu', icon: '💈' },
+  { href: '/appointments', label: 'Appointment', icon: '💈' },
+  { href: '/customers', label: 'Pelanggan', icon: '👥' },
+  { href: '/barbers', label: 'Barber', icon: '✂️' },
+  { href: '/services', label: 'Layanan', icon: '🎯' },
   { href: '/payments', label: 'Pembayaran', icon: '💰' },
   { href: '/reports', label: 'Laporan', icon: '📈' },
   { href: '/settings', label: 'Pengaturan', icon: '⚙️' },
@@ -40,7 +39,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Sidebar */}
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-slate-800 text-white transform transition-transform lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6">
-          <h1 className="text-2xl font-bold">🏋️ ZBarber</h1>
+          <h1 className="text-2xl font-bold">💈 ZBarber</h1>
           {user?.tenantName && (
             <div className="mt-2">
               <p className="text-white font-medium text-sm">{user.tenantName}</p>
