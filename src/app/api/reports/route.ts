@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
   })
 
   // Popular classes
-  const popularClasses = await prisma.gymClass.findMany({
+  const popularClasses: any[] = []; // prisma.gymClass removed - (
     where: tenantFilter,
     include: {
       _count: { select: { bookings: true } },

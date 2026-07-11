@@ -41,7 +41,7 @@ export default function SettingsPage() {
     const res = await fetch('/api/instructors', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newInstructor) })
     if (res.ok) {
       const inst = await res.json()
-      setInstructors([...instructors, inst])
+      // removed gym ref
       setNewInstructor({ name: '', specialty: '', phone: '', email: '' })
     }
   }

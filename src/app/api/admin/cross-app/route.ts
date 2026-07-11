@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const tenants = await prisma.tenant.findMany({
-      select: { id: true, name: true, plan: true, isActive: true, planExpires: true, createdAt: true },
+      select: { id: true, name: true, plan: true, isActive: true, createdAt: true },
       orderBy: { createdAt: 'desc' },
     })
 
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
     })
 
     return NextResponse.json({
-      tenants: tenants.map(t => ({ id: t.id, name: t.name, plan: t.plan || 'free', active: t.isActive, expires_at: t.planExpires })),
+      tenants: tenants.map(t => ({ id: t.id, name: t.name, plan: t.plan || 'free', active: t.isActive })),
       users: users.map(u => ({ id: u.id, name: u.name, email: u.email, role: u.role, active: u.isActive, tenantId: u.tenantId })),
     })
   } catch (error) {
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
 
     if (action === 'updatePlan') {
       if (!data?.tenantId || !data?.plan) return NextResponse.json({ error: 'tenantId & plan wajib' }, { status: 400 })
-      await prisma.tenant.update({ where: { id: data.tenantId }, data: { plan: data.plan, planExpires: data.planExpires ? new Date(data.planExpires) : null } })
+      await prisma.tenant.update({ where: { id: data.tenantId }, data: { plan: data.plan } })
       return NextResponse.json({ success: true })
     }
 

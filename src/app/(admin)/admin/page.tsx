@@ -9,11 +9,8 @@ interface Tenant {
   email: string
   plan: string
   isActive: boolean
-  maxMembers: number
-  maxInstructors: number
-  maxClasses: number
   createdAt: string
-  _count: { users: number; members: number; instructors: number; gymClasses: number }
+  _count: { users: number }
 }
 
 const PLAN_OPTIONS = ['free', 'basic', 'pro', 'enterprise']
@@ -96,20 +93,20 @@ export default function AdminPage() {
                   </button>
                 </td>
                 <td className="px-4 py-3 text-sm">
-                  {t._count.members} / {t.maxMembers}
+                  {t._count.users} users
                 </td>
                 <td className="px-4 py-3 text-xs text-gray-500">
-                  {t._count.users} users • {t._count.instructors} inst
+                  
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex gap-2">
                     <input
                       type="number"
-                      defaultValue={t.maxMembers}
+                      
                       className="w-20 text-xs border rounded px-2 py-1"
                       onBlur={(e) => {
                         const val = parseInt(e.target.value)
-                        if (val !== t.maxMembers) updateTenant(t.id, { maxMembers: val } as any)
+                        
                       }}
                       title="Max Members"
                     />

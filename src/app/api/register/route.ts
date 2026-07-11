@@ -40,9 +40,6 @@ export async function POST(req: NextRequest) {
         email,
         phone: phone || null,
         plan: 'free',
-        maxMembers: 50,
-        maxInstructors: 3,
-        maxClasses: 5,
         users: {
           create: {
             name: ownerName,

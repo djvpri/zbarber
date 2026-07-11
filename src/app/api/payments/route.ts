@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
 
   const payments = await prisma.payment.findMany({
     where,
-    include: { member: true, membership: { include: { plan: true } }, ptSession: true },
+    include: { appointment: { include: { customer: true, items: { include: { service: true } } } } },
     orderBy: { paidAt: 'desc' },
     take: 200,
   })
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       tenantId,
       memberId: body.memberId,
       membershipId: body.membershipId || null,
-      ptSessionId: body.ptSessionId || null,
+      
       type: body.type,
       description: body.description,
       amount: body.amount,

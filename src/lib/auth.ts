@@ -40,7 +40,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
               include: { tenant: true },
             })
             if (!user) return null
-            if (user.role !== 'superadmin' && (!user.tenant || !user.tenant.isActive)) return null
+            if ((!user.tenant || !user.tenant.isActive)) return null
             return { id: user.id, email: user.email, name: user.name }
           } catch {
             return null
@@ -60,7 +60,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!user) return null
         if (!user.isActive) return null
         // Superadmin bypass: no tenantId needed
-        if (user.role !== 'superadmin' && (!user.tenant || !user.tenant.isActive)) return null
+        if ((!user.tenant || !user.tenant.isActive)) return null
 
         const isValid = await bcrypt.compare(
           credentials.password as string,
@@ -99,9 +99,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             token.tenantName = dbUser.tenant.name
             token.tenantSlug = dbUser.tenant.slug
             token.tenantPlan = dbUser.tenant.plan
-            token.tenantMaxMembers = dbUser.tenant.maxMembers
-            token.tenantMaxInstructors = dbUser.tenant.maxInstructors
-            token.tenantMaxClasses = dbUser.tenant.maxClasses
           }
         }
       }
