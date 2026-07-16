@@ -6,14 +6,14 @@ import { useState } from 'react'
 import { signOut, useSession } from 'next-auth/react'
 
 const menuItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: '📊' },
-  { href: '/appointments', label: 'Appointment', icon: '💈' },
-  { href: '/customers', label: 'Pelanggan', icon: '👥' },
-  { href: '/barbers', label: 'Barber', icon: '✂️' },
-  { href: '/services', label: 'Layanan', icon: '🎯' },
-  { href: '/payments', label: 'Pembayaran', icon: '💰' },
-  { href: '/reports', label: 'Laporan', icon: '📈' },
-  { href: '/settings', label: 'Pengaturan', icon: '⚙️' },
+  { href: '/dashboard', label: 'Dashboard', icon: 'bi-bar-chart-line' },
+  { href: '/appointments', label: 'Appointment', icon: 'bi-calendar-check' },
+  { href: '/customers', label: 'Pelanggan', icon: 'bi-people' },
+  { href: '/barbers', label: 'Barber', icon: 'bi-scissors' },
+  { href: '/services', label: 'Layanan', icon: 'bi-grid' },
+  { href: '/payments', label: 'Pembayaran', icon: 'bi-cash-coin' },
+  { href: '/reports', label: 'Laporan', icon: 'bi-graph-up' },
+  { href: '/settings', label: 'Pengaturan', icon: 'bi-gear' },
 ]
 
 const PLAN_BADGES: Record<string, string> = {
@@ -39,7 +39,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Sidebar */}
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-slate-800 text-white transform transition-transform lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6">
-          <h1 className="text-2xl font-bold">💈 ZBarber</h1>
+          <h1 className="text-2xl font-bold flex items-center gap-2">
+            <i className="bi bi-scissors" />
+            ZBarber
+          </h1>
           {user?.tenantName && (
             <div className="mt-2">
               <p className="text-white font-medium text-sm">{user.tenantName}</p>
@@ -61,7 +64,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   : 'text-slate-300 hover:bg-slate-700'
               }`}
             >
-              <span>{item.icon}</span>
+              <i className={`bi ${item.icon} text-base`} />
               <span>{item.label}</span>
             </Link>
           ))}
@@ -71,7 +74,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             onClick={() => signOut({ callbackUrl: '/login' })}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700 transition"
           >
-            <span>🚪</span>
+            <i className="bi bi-box-arrow-right text-base" />
             <span>Keluar</span>
           </button>
         </div>
@@ -82,9 +85,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         {/* Top bar */}
         <header className="bg-white border-b px-4 py-3 flex items-center gap-4">
           <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-2 hover:bg-gray-100 rounded-lg">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <i className="bi bi-list text-xl" />
           </button>
           <h2 className="text-lg font-semibold text-gray-800">
             {menuItems.find((m) => m.href === pathname)?.label || 'ZBarber'}

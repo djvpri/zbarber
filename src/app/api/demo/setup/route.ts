@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic"
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { hash } from 'bcryptjs'
-import { seedDataDemo } from '@/lib/demo-seed'
+import { seedDataDemo, bersihkanDataBarber } from '@/lib/demo-seed'
 
 export async function POST(req: NextRequest) {
   const authHeader = req.headers.get('authorization')
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       where: { email: 'demo@zomet.my.id', tenantId: tenant.id },
     })
     if (!user) {
-      const passwordHash = await hash('demo123', 12)
+      const passwordHash = await hash('demo1234', 12)
       user = await prisma.user.create({
         data: {
           name: 'Demo Barbershop',
@@ -51,6 +51,8 @@ export async function POST(req: NextRequest) {
       })
     }
 
+    // Bersihkan data lama sebelum seed ulang
+    await bersihkanDataBarber(tenant.id)
     const result = await seedDataDemo(tenant.id)
     return NextResponse.json({
       success: true,
